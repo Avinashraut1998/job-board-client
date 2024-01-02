@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,6 +9,9 @@ import Paper from "@mui/material/Paper";
 import { Box, Typography } from "@mui/material";
 import CreateJobDialog from "./CreateJobDialog";
 import axios from "axios";
+import DeleteJobDialog from "./DeleteJobDialog";
+import ViewJobDialog from "./ViewJobDialog";
+import UpdateJobDialog from "./UpdateJobDialog";
 
 const EmployerJobsTable = () => {
   const [jobs, setJobs] = React.useState([]);
@@ -26,7 +29,7 @@ const EmployerJobsTable = () => {
             },
           }
         );
-        console.log(response.data);
+
         setJobs(response.data.jobs);
       }
     } catch (error) {
@@ -42,13 +45,29 @@ const EmployerJobsTable = () => {
     setJobs((prevJobs) => [newJob, ...prevJobs]);
   };
 
+  const handleJobDeletion = (deletedJobId) => {
+    const updatedJobs = jobs.filter((job) => job._id !== deletedJobId);
+    setJobs(updatedJobs);
+    fetchJobs();
+  };
+
+  const handleJobUpdate = (updatedJob) => {
+    const updatedJobIndex = jobs.findIndex((job) => job._id === updatedJob._id);
+
+    if (updatedJobIndex !== -1) {
+      const updatedJobs = [...jobs];
+      updatedJobs[updatedJobIndex] = updatedJob;
+      setJobs(updatedJobs);
+    }
+  };
+
   return (
     <Box>
       <Box
         sx={{ display: "flex", justifyContent: "space-between", padding: 1 }}
       >
         <Typography variant="h5" fontWeight={"bold"}>
-          All Jobs{" "}
+          All Jobs
         </Typography>
         <CreateJobDialog updateJobs={updateJobs} />
       </Box>
@@ -66,15 +85,34 @@ const EmployerJobsTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {jobs?.map((job) => (
-              <TableRow key={job?._id}>
-                <TableCell component="th" scope="row">
-                  {job?.jobTitle}
+            {jobs.length > 0 ? (
+              jobs.map((job) => (
+                <TableRow key={job._id}>
+                  <TableCell component="th" scope="row">
+                    {job.jobTitle}
+                  </TableCell>
+                  <TableCell align="left">{job.vacancies}</TableCell>
+                  <TableCell align="left" sx={{ display: "flex", gap: 1 }}>
+                    <ViewJobDialog jobId={job._id} job={job} />
+                    <UpdateJobDialog
+                      jobId={job._id}
+                      job={job}
+                      onUpdate={handleJobUpdate}
+                    />
+                    <DeleteJobDialog
+                      jobId={job._id}
+                      updateJobs={handleJobDeletion}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={3} align="center">
+                  No jobs available
                 </TableCell>
-                <TableCell align="left">{job?.vacancies}</TableCell>
-                <TableCell align="left"> {/* Add actions here */}</TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>

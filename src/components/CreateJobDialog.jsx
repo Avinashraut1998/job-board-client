@@ -24,7 +24,7 @@ function CreateJobDialog({ updateJobs }) {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     jobTitle: "",
-    vacancies: 0,
+    vacancies: 1,
     location: "",
     desc: "",
   });

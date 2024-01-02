@@ -7,13 +7,15 @@ import { Outlet } from "react-router-dom";
 const EmployerDashboard = ({ user }) => {
   return (
     <>
-      <NavBar user={user} />
-      <Box sx={{ display: "flex", bgcolor: "#eee" }}>
-        <CssBaseline />
-        <EmployerDrawer />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, minHeight: "100vh" }}>
-          <Toolbar />
-          <Outlet />
+      <Box>
+        <NavBar user={user} />
+        <Box sx={{ display: "flex", bgcolor: "#eee" }}>
+          <CssBaseline />
+          <EmployerDrawer />
+          <Box component="main" sx={{ flexGrow: 1, p: 3, minHeight: "100vh" }}>
+            <Toolbar />
+            <Outlet />
+          </Box>
         </Box>
       </Box>
     </>
