@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -14,7 +14,7 @@ import ViewJobDialog from "./ViewJobDialog";
 import UpdateJobDialog from "./UpdateJobDialog";
 
 const EmployerJobsTable = () => {
-  const [jobs, setJobs] = React.useState([]);
+  const [jobs, setJobs] = useState([]);
 
   const fetchJobs = async () => {
     try {

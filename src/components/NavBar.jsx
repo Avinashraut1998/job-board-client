@@ -6,6 +6,7 @@ import { useAuth } from "../context/AuthContext";
 const NavBar = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+
   return (
     <AppBar
       position="fixed"
@@ -18,7 +19,7 @@ const NavBar = () => {
           style={{ maxWidth: "120px", maxHeight: "60px" }}
         />
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Typography>{user?.username}</Typography>
+          <Typography>{user?.role}</Typography>
           <Button
             onClick={() => {
               navigate("/");

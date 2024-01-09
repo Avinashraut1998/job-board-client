@@ -12,7 +12,6 @@ import { useAuth } from "./context/AuthContext";
 import UserSignUp from "./pages/UserSignUp";
 
 const App = () => {
-  const { user } = useAuth();
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />

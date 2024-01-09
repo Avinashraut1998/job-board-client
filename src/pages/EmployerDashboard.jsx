@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import { Box, CssBaseline, Toolbar } from "@mui/material";
 
 import { Outlet } from "react-router-dom";
 import EmployerDrawer from "../components/Employer/EmployerDrawer";
+import { useAuth } from "../context/AuthContext";
+import axios from "axios";
 
-const EmployerDashboard = ({ user }) => {
+const EmployerDashboard = () => {
+  const { setUser, BASE_URL } = useAuth();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+          const response = await axios.get(` ${BASE_URL}/employer/user`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const data = response.data.userData;
+          setUser(data);
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <>
       <Box>
-        <NavBar user={user} />
+        <NavBar />
         <Box sx={{ display: "flex", bgcolor: "#eee" }}>
           <CssBaseline />
           <EmployerDrawer />

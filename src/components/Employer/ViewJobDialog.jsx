@@ -12,14 +12,14 @@ import { Box, Typography } from "@mui/material";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
-    minWidth: 600, // Set your desired minimum width
+    minWidth: 600,
   },
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
 }));
 
-export default function ViewJobDialog({ jobId, job }) {
+export default function ViewJobDialog({ job }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
