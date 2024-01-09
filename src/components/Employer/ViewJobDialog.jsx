@@ -57,15 +57,15 @@ export default function ViewJobDialog({ jobId, job }) {
         <DialogContent dividers>
           <Box mt={2}>
             <Typography variant="body1" gutterBottom>
-              <strong>Description:</strong> {job?.desc}
-            </Typography>
-
-            <Typography variant="body1" gutterBottom>
               <strong>Vacancies:</strong> {job?.vacancies}
             </Typography>
 
             <Typography variant="body1" gutterBottom>
               <strong>Location:</strong> {job?.location}
+            </Typography>
+
+            <Typography variant="body1" gutterBottom>
+              <strong>Description:</strong> {job?.desc}
             </Typography>
           </Box>
         </DialogContent>

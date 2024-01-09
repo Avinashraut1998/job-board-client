@@ -17,7 +17,7 @@ import { Divider } from "@mui/material";
 
 const defaultTheme = createTheme();
 
-const UserLogin = () => {
+const EmployerLogin = () => {
   const { BASE_URL } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -35,13 +35,13 @@ const UserLogin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${BASE_URL}/user/signin`, {
+      const response = await axios.post(`${BASE_URL}/employer/signin`, {
         email: formData.email,
         password: formData.password,
       });
       localStorage.setItem("token", response.data.token);
       alert("Login Successful");
-      navigate("/user/jobs  ");
+      navigate("/employer/jobs");
     } catch (error) {
       console.log("An error occurred:", error.message);
     }
@@ -93,7 +93,7 @@ const UserLogin = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              User Sign in
+              Employer Sign in
             </Typography>
             <Box
               component="form"
@@ -136,7 +136,7 @@ const UserLogin = () => {
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link
-                    onClick={() => navigate("/user/signup")}
+                    onClick={() => navigate("/employer/signup")}
                     variant="body2"
                   >
                     {"Don't have an account? Sign Up"}
@@ -152,7 +152,7 @@ const UserLogin = () => {
   );
 };
 
-export default UserLogin;
+export default EmployerLogin;
 
 const CustomLinks = () => {
   return (
@@ -175,10 +175,10 @@ const CustomLinks = () => {
       </NavLink>
       <Divider orientation="vertical" flexItem />
       <NavLink
-        to="/employer/login"
+        to="/"
         style={{ textDecoration: "none", color: "black", font: "bold" }}
       >
-        <Typography> Recruiter</Typography>
+        <Typography> user</Typography>
       </NavLink>
       {/* Add more links as needed */}
     </Box>

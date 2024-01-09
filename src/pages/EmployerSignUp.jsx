@@ -96,7 +96,7 @@ const EmployerSignUp = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign Up
+              Employer Sign Up
             </Typography>
             <Box
               component="form"
@@ -166,7 +166,10 @@ const EmployerSignUp = () => {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link onClick={() => navigate("/")} variant="body2">
+                  <Link
+                    onClick={() => navigate("/employer/login")}
+                    variant="body2"
+                  >
                     Already have an account? Sign in
                   </Link>
                 </Grid>
