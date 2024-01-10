@@ -11,7 +11,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ApplyJobDialog({ jobId, updateJobs }) {
+export default function ApplyJobDialog({
+  jobId,
+  handleApplySuccess,
+  handleClickAlert,
+}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,9 +26,26 @@ export default function ApplyJobDialog({ jobId, updateJobs }) {
     setOpen(false);
   };
 
-  const handleDelete = async () => {
+  const handleApply = async () => {
     try {
-      alert("Applied Successfully!");
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        const response = await axios.post(
+          `http://localhost:8080/user/find-job/${jobId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.data.success === true) {
+          handleClickAlert();
+          handleApplySuccess(jobId);
+        }
+      }
     } catch (error) {
       console.error("Error deleting job:", error);
     } finally {
@@ -33,7 +54,7 @@ export default function ApplyJobDialog({ jobId, updateJobs }) {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
         Apply
       </Button>
@@ -47,10 +68,10 @@ export default function ApplyJobDialog({ jobId, updateJobs }) {
         <DialogTitle>{"Are you sure you want to Apply?"}</DialogTitle>
 
         <DialogActions>
-          <Button onClick={handleDelete}>Apply</Button>
+          <Button onClick={handleApply}>Apply</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }

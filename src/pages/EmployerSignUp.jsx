@@ -43,7 +43,7 @@ const EmployerSignUp = () => {
         firstname: formData.firstname,
         lastname: formData.lastname,
       });
-      console.log(response.data);
+
       alert("Account Created Successfully");
     } catch (error) {
       console.log(error.message);

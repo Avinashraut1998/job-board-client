@@ -8,7 +8,6 @@ import EmployerJobsTable from "./components/Employer/EmployerJobsTable";
 import UserDashboard from "./components/User/UserDashboard";
 import UserJobstable from "./components/User/UserJobsTable";
 import UserProfile from "./components/User/UserProfile";
-import { useAuth } from "./context/AuthContext";
 import UserSignUp from "./pages/UserSignUp";
 import AdminSignUp from "./pages/AdminSignup";
 import AdminDashboard from "./pages/AdminDashboard";
