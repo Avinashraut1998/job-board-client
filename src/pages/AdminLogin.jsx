@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,18 +10,16 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { Divider } from "@mui/material";
 
 const defaultTheme = createTheme();
 
-const UserSignUp = () => {
+const AdminLogin = () => {
   const { BASE_URL } = useAuth();
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
     email: "",
     password: "",
   });
@@ -36,16 +35,15 @@ const UserSignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${BASE_URL}/user/register`, {
+      const response = await axios.post(`${BASE_URL}/admin/signin`, {
         email: formData.email,
         password: formData.password,
-        firstname: formData.firstname,
-        lastname: formData.lastname,
       });
-      console.log(response.data);
-      alert("Account Created Successfully");
+      localStorage.setItem("token", response.data.token);
+      alert("Login Successful");
+      navigate("/admin/admindashboard  ");
     } catch (error) {
-      console.log(error.message);
+      console.log("An error occurred:", error.message);
     }
   };
 
@@ -80,7 +78,7 @@ const UserSignUp = () => {
           component={Paper}
           elevation={6}
           square
-          sx={{ marginTop: 0 }}
+          sx={{ marginTop: 0, position: "relative" }}
         >
           <Box
             sx={{
@@ -95,87 +93,94 @@ const UserSignUp = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              User Sign Up
+              Admin Sign in
             </Typography>
             <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
+              sx={{ mt: 1 }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="given-name"
-                    name="firstname"
-                    required
-                    fullWidth
-                    id="firstname"
-                    label="First Name"
-                    autoFocus
-                    value={formData.firstname}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="lastname"
-                    label="Last Name"
-                    name="lastname"
-                    autoComplete="family-name"
-                    value={formData.lastname}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
-                </Grid>
-              </Grid>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={formData.email}
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={formData.password}
+                onChange={handleChange}
+              />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                Sign In
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link onClick={() => navigate("/")} variant="body2">
-                    Already have an account? Sign in
+                  <Link
+                    onClick={() => navigate("/admin/signup")}
+                    variant="body2"
+                  >
+                    {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
             </Box>
           </Box>
+          <CustomLinks />
         </Grid>
       </Grid>
     </ThemeProvider>
   );
 };
 
-export default UserSignUp;
+export default AdminLogin;
+
+const CustomLinks = () => {
+  return (
+    <Box
+      sx={{
+        position: "fixed",
+        bottom: 0,
+        right: 0,
+        padding: 2,
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        display: "flex",
+        gap: 1,
+      }}
+    >
+      <NavLink
+        to="/employer/login"
+        style={{ textDecoration: "none", color: "black", font: "bold" }}
+      >
+        <Typography>Employeer</Typography>
+      </NavLink>
+      <Divider orientation="vertical" flexItem />
+      <NavLink
+        to="/"
+        style={{ textDecoration: "none", color: "black", font: "bold" }}
+      >
+        <Typography> user</Typography>
+      </NavLink>
+      {/* Add more links as needed */}
+    </Box>
+  );
+};

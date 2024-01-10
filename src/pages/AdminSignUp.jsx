@@ -1,3 +1,4 @@
+import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,7 +17,7 @@ import { useAuth } from "../context/AuthContext";
 
 const defaultTheme = createTheme();
 
-const UserSignUp = () => {
+const AdminSignUp = () => {
   const { BASE_URL } = useAuth();
   const [formData, setFormData] = useState({
     firstname: "",
@@ -36,7 +37,7 @@ const UserSignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${BASE_URL}/user/register`, {
+      const response = await axios.post(`${BASE_URL}/admin/register`, {
         email: formData.email,
         password: formData.password,
         firstname: formData.firstname,
@@ -161,21 +162,57 @@ const UserSignUp = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                Admin Sign Up
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link onClick={() => navigate("/")} variant="body2">
+                  <Link
+                    onClick={() => navigate("/admin/login")}
+                    variant="body2"
+                  >
                     Already have an account? Sign in
                   </Link>
                 </Grid>
               </Grid>
             </Box>
           </Box>
+          <CustomLinks />
         </Grid>
       </Grid>
+      <CustomLinks />
     </ThemeProvider>
   );
 };
 
-export default UserSignUp;
+export default AdminSignUp;
+
+const CustomLinks = () => {
+  return (
+    <Box
+      sx={{
+        position: "fixed",
+        bottom: 0,
+        right: 0,
+        padding: 2,
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        display: "flex",
+        gap: 1,
+      }}
+    >
+      <NavLink
+        to="/employer/login"
+        style={{ textDecoration: "none", color: "black", font: "bold" }}
+      >
+        <Typography>Employeer</Typography>
+      </NavLink>
+      <Divider orientation="vertical" flexItem />
+      <NavLink
+        to="/"
+        style={{ textDecoration: "none", color: "black", font: "bold" }}
+      >
+        <Typography> user</Typography>
+      </NavLink>
+      {/* Add more links as needed */}
+    </Box>
+  );
+};
