@@ -10,6 +10,9 @@ import UserJobstable from "./components/User/UserJobsTable";
 import UserProfile from "./components/User/UserProfile";
 import { useAuth } from "./context/AuthContext";
 import UserSignUp from "./pages/UserSignUp";
+import AdminSignUp from "./pages/AdminSignup";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLogin from "./pages/AdminLogin";
 
 const App = () => {
   return (
@@ -28,6 +31,10 @@ const App = () => {
         <Route index path="jobs" element={<UserJobstable />} />
         <Route path="profile" element={<UserProfile />} />
       </Route>
+      //Admin Routes
+      <Route path="/admin/signup" element={<AdminSignUp />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin/admindashboard" element={<AdminDashboard />} />
     </Routes>
   );
 };

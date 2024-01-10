@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -37,7 +37,7 @@ const EmployerJobsTable = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchJobs();
   }, []);
 

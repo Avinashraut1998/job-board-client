@@ -75,7 +75,13 @@ const UserJobsTable = () => {
                   <TableCell align="left">{job.location}</TableCell>
                   <TableCell align="left" sx={{ display: "flex", gap: 1 }}>
                     <ViewJobDialog jobId={job._id} job={job} />
-                    <ApplyJobDialog />
+                    {job.isApplied ? (
+                      <Button disabled variant="contained" color="primary">
+                        applied
+                      </Button>
+                    ) : (
+                      <ApplyJobDialog />
+                    )}
                   </TableCell>
                 </TableRow>
               ))
