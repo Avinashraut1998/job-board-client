@@ -19,7 +19,7 @@ const NavBar = () => {
           style={{ maxWidth: "120px", maxHeight: "60px" }}
         />
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Typography>{user?.role}</Typography>
+          <Typography>{user?.username}</Typography>
           <Button
             onClick={() => {
               navigate("/");

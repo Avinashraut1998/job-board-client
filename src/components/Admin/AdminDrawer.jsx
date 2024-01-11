@@ -1,4 +1,4 @@
-import React from "react";
+
 import {
   Box,
   Divider,
@@ -10,6 +10,8 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
+
+import React from "react";
 
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
@@ -37,13 +39,13 @@ const AdminDrawer = () => {
                 <InboxIcon />
               </ListItemIcon>
               <ListItemText primary="Aproval" />
+
             </ListItemButton>
           </ListItem>
         </List>
         <Divider />
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate("/admin/profile")}>
               <ListItemIcon>
                 <MailIcon />
               </ListItemIcon>
