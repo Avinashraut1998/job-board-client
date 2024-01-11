@@ -7,9 +7,20 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
+
+// ... (import statements remain the same)
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -20,6 +31,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
+
 export default function CandidateDetails({ job }) {
   const [candidates, setCandidates] = useState([]);
   const { BASE_URL } = useAuth();
@@ -78,15 +90,26 @@ export default function CandidateDetails({ job }) {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-          {candidates?.map((candidate) => (
-            <div key={candidate.userId}>
-              <Typography variant="h6">
-                {`${candidate.firstname} ${candidate.lastname}`}
-              </Typography>
-              <Typography>Email: {candidate.email}</Typography>
-              {/* Add any additional candidate details you want to display */}
-            </div>
-          ))}
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {candidates?.map((candidate) => (
+                  <TableRow key={candidate.userId}>
+                    <TableCell>
+                      {`${candidate.firstname} ${candidate.lastname}`}
+                    </TableCell>
+                    <TableCell>{candidate.email}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
