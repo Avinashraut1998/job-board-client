@@ -84,7 +84,6 @@ export default function CandidateDetails({ job }) {
                 {`${candidate.firstname} ${candidate.lastname}`}
               </Typography>
               <Typography>Email: {candidate.email}</Typography>
-              {/* Add any additional candidate details you want to display */}
             </div>
           ))}
         </DialogContent>
