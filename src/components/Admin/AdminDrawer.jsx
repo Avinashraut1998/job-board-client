@@ -1,3 +1,4 @@
+
 import {
   Box,
   Divider,
@@ -9,7 +10,9 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
+
 import React from "react";
+
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 const AdminDrawer = () => {
   const navigate = useNavigate();
   const drawerWidth = 240;
+
   return (
     <Drawer
       variant="permanent"
@@ -30,26 +34,18 @@ const AdminDrawer = () => {
       <Box sx={{ overflow: "auto" }}>
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate("/employer/jobs")}>
+            <ListItemButton onClick={() => navigate("/admin/aproval")}>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary="Jobs" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate("/employer/applied-list")}>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Applied Candidate" />
+              <ListItemText primary="Aproval" />
+
             </ListItemButton>
           </ListItem>
         </List>
         <Divider />
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate("/employer/profile")}>
               <ListItemIcon>
                 <MailIcon />
               </ListItemIcon>
