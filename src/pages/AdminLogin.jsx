@@ -41,7 +41,7 @@ const AdminLogin = () => {
       });
       localStorage.setItem("token", response.data.token);
       alert("Login Successful");
-      navigate("/admin/admindashboard  ");
+      navigate("/admin  ");
     } catch (error) {
       console.log("An error occurred:", error.message);
     }

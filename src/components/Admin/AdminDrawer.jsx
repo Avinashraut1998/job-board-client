@@ -1,4 +1,3 @@
-
 import {
   Box,
   Divider,
@@ -14,7 +13,7 @@ import {
 import React from "react";
 
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+
 import { useNavigate } from "react-router-dom";
 
 const AdminDrawer = () => {
@@ -34,20 +33,18 @@ const AdminDrawer = () => {
       <Box sx={{ overflow: "auto" }}>
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate("/admin/aproval")}>
+            <ListItemButton onClick={() => navigate("/admin/candidates-list")}>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary="Aproval" />
-
+              <ListItemText primary="Candidates List" />
             </ListItemButton>
           </ListItem>
-        </List>
-        <Divider />
-        <List>
+          <Divider />
           <ListItem disablePadding>
+            <ListItemButton onClick={() => navigate("/admin/profile")}>
               <ListItemIcon>
-                <MailIcon />
+                <InboxIcon />
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemButton>

@@ -13,6 +13,8 @@ import AdminSignUp from "./pages/AdminSignup";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import AppliedCandidateList from "./components/Employer/AppliedCandidateList";
+import CandidatesList from "./components/Admin/CandidatesList";
+import AdminProfile from "./components/Admin/AdminProfile";
 
 const App = () => {
   return (
@@ -35,7 +37,10 @@ const App = () => {
       //Admin Routes
       <Route path="/admin/signup" element={<AdminSignUp />} />
       <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin/admindashboard" element={<AdminDashboard />} />
+      <Route path="/admin" element={<AdminDashboard />}>
+        <Route path="candidates-list" element={<CandidatesList />} />
+        <Route path="profile" element={<AdminProfile />} />
+      </Route>
     </Routes>
   );
 };

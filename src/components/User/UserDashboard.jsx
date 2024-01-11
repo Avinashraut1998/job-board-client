@@ -7,7 +7,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const UserDashboard = () => {
-  const { setUser, BASE_URL } = useAuth();
+  const { setUser, BASE_URL, user } = useAuth();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -21,6 +21,7 @@ const UserDashboard = () => {
             },
           });
           const data = response.data.userData;
+          console.log(data);
           setUser(data);
         }
       } catch (error) {
@@ -39,7 +40,11 @@ const UserDashboard = () => {
           <UserDrawer />
           <Box component="main" sx={{ flexGrow: 1, p: 3, minHeight: "100vh" }}>
             <Toolbar />
-            <Outlet />
+            {user?.isVerified == true ? (
+              <Outlet />
+            ) : (
+              <div> User account is not verified yet</div>
+            )}
           </Box>
         </Box>
       </Box>
