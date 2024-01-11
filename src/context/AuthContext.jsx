@@ -4,6 +4,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [jobs, setJobs] = useState([]);
   const BASE_URL = "http://localhost:8080";
 
   const logout = () => {
@@ -15,6 +16,8 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     logout,
+    jobs,
+    setJobs,
     BASE_URL,
   };
 

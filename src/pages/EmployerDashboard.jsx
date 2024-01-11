@@ -8,7 +8,25 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 const EmployerDashboard = () => {
-  const { setUser, BASE_URL } = useAuth();
+  const { setJobs, setUser, BASE_URL } = useAuth();
+
+  const fetchJobs = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        const response = await axios.get(`${BASE_URL}/employer/jobs`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setJobs(response.data.jobs);
+      }
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -28,7 +46,7 @@ const EmployerDashboard = () => {
         console.error("Error fetching user details:", error);
       }
     };
-
+    fetchJobs();
     fetchUserData();
   }, []);
 

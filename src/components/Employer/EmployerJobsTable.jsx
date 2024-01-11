@@ -12,34 +12,10 @@ import axios from "axios";
 import DeleteJobDialog from "./DeleteJobDialog";
 import ViewJobDialog from "./ViewJobDialog";
 import UpdateJobDialog from "./UpdateJobDialog";
+import { useAuth } from "../../context/AuthContext";
 
 const EmployerJobsTable = () => {
-  const [jobs, setJobs] = useState([]);
-
-  const fetchJobs = async () => {
-    try {
-      const token = localStorage.getItem("token");
-
-      if (token) {
-        const response = await axios.get(
-          "http://localhost:8080/employer/jobs",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        setJobs(response.data.jobs);
-      }
-    } catch (error) {
-      console.error("Error fetching jobs:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchJobs();
-  }, []);
+  const { jobs, setJobs } = useAuth();
 
   const updateJobs = (newJob) => {
     setJobs((prevJobs) => [newJob, ...prevJobs]);

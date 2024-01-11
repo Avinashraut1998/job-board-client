@@ -12,6 +12,7 @@ import UserSignUp from "./pages/UserSignUp";
 import AdminSignUp from "./pages/AdminSignup";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
+import AppliedCandidateList from "./components/Employer/AppliedCandidateList";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
       <Route path="/employer" element={<EmployerDashboard />}>
         <Route index path="jobs" element={<EmployerJobsTable />} />
         <Route path="profile" element={<EmployerProfile />} />
+        <Route path="applied-list" element={<AppliedCandidateList />} />
       </Route>
       // User Routes
       <Route path="/user/signup" element={<UserSignUp />} />
