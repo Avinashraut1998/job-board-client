@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 const EmployerDashboard = () => {
-  const { setJobs, setUser, BASE_URL } = useAuth();
+  const { setJobs, setUser, BASE_URL, setJobnotification } = useAuth();
 
   const fetchJobs = async () => {
     try {
@@ -21,7 +21,28 @@ const EmployerDashboard = () => {
           },
         });
 
-        setJobs(response.data.jobs);
+        setJobnotification(response.data.jobs);
+      }
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
+
+  const fetchjobNotification = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        const response = await axios.get(
+          `${BASE_URL}/employer/jobs-notification`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setJobnotification(response.data.jobs);
       }
     } catch (error) {
       console.error("Error fetching jobs:", error);
@@ -48,6 +69,7 @@ const EmployerDashboard = () => {
     };
     fetchJobs();
     fetchUserData();
+    fetchjobNotification();
   }, []);
 
   return (

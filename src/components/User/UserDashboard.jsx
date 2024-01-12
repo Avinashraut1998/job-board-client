@@ -7,7 +7,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const UserDashboard = () => {
-  const { setUser, BASE_URL, user } = useAuth();
+  const { setUser, BASE_URL, user, setJobnotification } = useAuth();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,7 +29,30 @@ const UserDashboard = () => {
       }
     };
 
+    const fetchNotifydata = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+          const response = await axios.get(
+            ` ${BASE_URL}/user/get-jobs-notification`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          const data = response.data.jobs;
+          console.log(data);
+          setJobnotification(data);
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
     fetchUserData();
+    fetchNotifydata();
   }, []);
   return (
     <>

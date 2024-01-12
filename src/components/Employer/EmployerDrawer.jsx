@@ -45,6 +45,16 @@ const EmployerDrawer = () => {
               <ListItemText primary="Applied Candidate" />
             </ListItemButton>
           </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => navigate("/employer/jobnotification")}
+            >
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Job Notification" />
+            </ListItemButton>
+          </ListItem>
         </List>
         <Divider />
         <List>
