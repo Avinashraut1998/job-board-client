@@ -15,6 +15,8 @@ import AdminLogin from "./pages/AdminLogin";
 import AppliedCandidateList from "./components/Employer/AppliedCandidateList";
 import CandidatesList from "./components/Admin/CandidatesList";
 import AdminProfile from "./components/Admin/AdminProfile";
+import JobNotification from "./components/Employer/JobNotification";
+import JobNotify from "./components/User/JobNotify";
 
 const App = () => {
   return (
@@ -27,11 +29,13 @@ const App = () => {
         <Route index path="jobs" element={<EmployerJobsTable />} />
         <Route path="profile" element={<EmployerProfile />} />
         <Route path="applied-list" element={<AppliedCandidateList />} />
+        <Route path="jobnotification" element={<JobNotification />} />
       </Route>
       // User Routes
       <Route path="/user/signup" element={<UserSignUp />} />
       <Route path="/user" element={<UserDashboard />}>
         <Route index path="jobs" element={<UserJobstable />} />
+        <Route index path="notification" element={<JobNotify />} />
         <Route path="profile" element={<UserProfile />} />
       </Route>
       //Admin Routes

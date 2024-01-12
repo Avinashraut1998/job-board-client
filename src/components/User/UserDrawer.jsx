@@ -38,6 +38,16 @@ const UserDrawer = () => {
             </ListItemButton>
           </ListItem>
         </List>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => navigate("/user/notification")}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Jobs Notification" />
+            </ListItemButton>
+          </ListItem>
+        </List>
         <Divider />
         <List>
           <ListItem disablePadding>
