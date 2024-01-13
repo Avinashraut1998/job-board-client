@@ -52,7 +52,7 @@ const JobNotification = () => {
         sx={{ display: "flex", justifyContent: "space-between", padding: 1 }}
       >
         <Typography variant="h5" fontWeight={"bold"}>
-          All Jobs
+          All Jobs Notifications+
         </Typography>
         <CreateNotificationDailaog updateJobs={updateJobs} />
       </Box>

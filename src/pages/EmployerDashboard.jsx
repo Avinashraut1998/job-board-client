@@ -21,7 +21,7 @@ const EmployerDashboard = () => {
           },
         });
 
-        setJobnotification(response.data.jobs);
+        setJobs(response.data.jobs);
       }
     } catch (error) {
       console.error("Error fetching jobs:", error);
