@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 const AdminDashboard = () => {
-  const { setJobs, setUser, BASE_URL } = useAuth();
+  const { setUser, BASE_URL } = useAuth();
   useEffect(() => {
     const fetchUserData = async () => {
       try {
