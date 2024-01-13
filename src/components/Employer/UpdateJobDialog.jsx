@@ -9,6 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import { useState } from "react";
 import { Box, Divider, TextField, Typography } from "@mui/material";
+import { useAuth } from "../../context/AuthContext";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -20,6 +21,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function UpdateJobDialog({ jobId, job, onUpdate }) {
+  const { BASE_URL } = useAuth();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     jobTitle: job?.jobTitle || "",
@@ -42,7 +44,7 @@ export default function UpdateJobDialog({ jobId, job, onUpdate }) {
 
       if (token) {
         const response = await axios.put(
-          `http://localhost:8080/employer/jobs/${jobId}`,
+          `${BASE_URL}/employer/jobs/${jobId}`,
           formData,
           {
             headers: {

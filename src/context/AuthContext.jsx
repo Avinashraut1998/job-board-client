@@ -6,7 +6,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [jobnotification, setJobnotification] = useState([]);
-  const BASE_URL = "http://localhost:8080";
+  const BASE_URL = "http://34.100.255.97:8080";
 
   const logout = () => {
     localStorage.removeItem("token");

@@ -5,6 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -12,6 +13,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 // Pass jobId and updateJobs as props
 export default function DeleteJobDialog({ jobId, updateJobs }) {
+  const { BASE_URL } = useAuth();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -27,7 +29,7 @@ export default function DeleteJobDialog({ jobId, updateJobs }) {
       const token = localStorage.getItem("token");
 
       if (token) {
-        await axios.delete(`http://localhost:8080/employer/jobs/${jobId}`, {
+        await axios.delete(`${BASE_URL}/employer/jobs/${jobId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
