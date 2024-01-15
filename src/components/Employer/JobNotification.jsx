@@ -9,7 +9,7 @@ import { Box, Typography } from "@mui/material";
 import ViewJobDialog from "./ViewJobDialog";
 import UpdateJobDialog from "./UpdateJobDialog";
 import { useAuth } from "../../context/AuthContext";
-import CreateNotificationDailog from "./CreateNotificationDailog";
+import CreateNotificationDailog from "./CreateNotificationdailaog";
 
 // const { BASE_URL } = useAuth();
 // const token = localStorage.getItem("token");
@@ -48,9 +48,9 @@ const JobNotification = () => {
         sx={{ display: "flex", justifyContent: "space-between", padding: 1 }}
       >
         <Typography variant="h5" fontWeight={"bold"}>
-          All Jobs Notifications+
+          All Jobs Notifications
         </Typography>
-        <CreateNotificationDailaog updateJobs={updateJobs} />
+        <CreateNotificationDailog updateJobs={updateJobs} />
       </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
