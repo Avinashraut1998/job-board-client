@@ -9,7 +9,7 @@ import { Box, Typography } from "@mui/material";
 import ViewJobDialog from "./ViewJobDialog";
 import UpdateJobDialog from "./UpdateJobDialog";
 import { useAuth } from "../../context/AuthContext";
-import CreateNotificationDailog from "./CreateNotificationdailaog";
+import CreateNotificationDailog from "./CreateNotificationDailog";
 
 // const { BASE_URL } = useAuth();
 // const token = localStorage.getItem("token");
