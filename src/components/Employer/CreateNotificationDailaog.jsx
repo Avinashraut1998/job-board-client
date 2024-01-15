@@ -21,7 +21,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-function CreateNotificationDailaog({ updateJobs }) {
+function CreateNotificationDailog({ updateJobs }) {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     jobTitle: "",
@@ -165,4 +165,4 @@ function CreateNotificationDailaog({ updateJobs }) {
   );
 }
 
-export default CreateNotificationDailaog;
+export default CreateNotificationDailog;
