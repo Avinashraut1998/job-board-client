@@ -6,7 +6,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [jobnotification, setJobnotification] = useState([]);
-  const BASE_URL = "http://35.244.12.170:8080";
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   const logout = () => {
     localStorage.removeItem("token");
