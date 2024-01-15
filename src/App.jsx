@@ -9,7 +9,7 @@ import UserDashboard from "./components/User/UserDashboard";
 import UserJobstable from "./components/User/UserJobsTable";
 import UserProfile from "./components/User/UserProfile";
 import UserSignUp from "./pages/UserSignUp";
-import AdminSignUp from "./pages/AdminSignup";
+import AdminSignUp from "./pages/AdminSignUp";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import AppliedCandidateList from "./components/Employer/AppliedCandidateList";
